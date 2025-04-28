@@ -8,7 +8,7 @@ st.set_page_config(page_title="Clipping Futebol Brasil", layout="wide", page_ico
 st.title("⚽ Clipping de Notícias de Futebol - Brasil")
 
 # API DE NOTÍCIAS (NewsAPI)
-API_KEY = "SUA_CHAVE_AQUI"  # <<<< Substitua aqui pela sua chave da NewsAPI
+API_KEY = "d6aff0a3bfa3488099cbf265deef0656"  # <<<< Substitua aqui pela sua chave da NewsAPI
 
 def buscar_noticias(query):
     url = f"https://newsapi.org/v2/everything?q={query}&language=pt&sortBy=publishedAt&apiKey={API_KEY}"
