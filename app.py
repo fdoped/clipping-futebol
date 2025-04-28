@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+import time
 
 # CONFIGURAÇÃO DA PÁGINA
 st.set_page_config(page_title="Clipping Futebol Brasil", layout="wide", page_icon="⚽")
@@ -7,7 +8,7 @@ st.set_page_config(page_title="Clipping Futebol Brasil", layout="wide", page_ico
 st.title("⚽ Clipping de Notícias de Futebol - Brasil")
 
 # API DE NOTÍCIAS (NewsAPI)
-API_KEY = "d6aff0a3bfa3488099cbf265deef0656"  # <<<< Substitua aqui pela sua chave da NewsAPI
+API_KEY = "SUA_CHAVE_AQUI"  # <<<< Substitua aqui pela sua chave da NewsAPI
 
 def buscar_noticias(query):
     url = f"https://newsapi.org/v2/everything?q={query}&language=pt&sortBy=publishedAt&apiKey={API_KEY}"
@@ -18,10 +19,14 @@ def buscar_noticias(query):
         st.error("Erro ao buscar notícias.")
         return []
 
-# LISTA DE CLUBES
-clubes = ['Botafogo', 'Flamengo', 'Palmeiras', 'São Paulo', 'Corinthians', 'Grêmio', 'Fluminense', 'Athletico-PR']
+# Função de auto-refresh
+def auto_refresh(intervalo=30):
+    st.write("Atualizando as notícias...")
+    time.sleep(intervalo)  # Espera o tempo definido
+    st.experimental_rerun()  # Força o Streamlit a recarregar a página
 
 # FILTROS
+clubes = ['Botafogo', 'Flamengo', 'Palmeiras', 'São Paulo', 'Corinthians', 'Grêmio', 'Fluminense', 'Athletico-PR']
 st.sidebar.title("Filtros")
 clube_selecionado = st.sidebar.selectbox("Selecione o Clube", ["Todos"] + clubes)
 termo_busca = st.sidebar.text_input("Busca por palavra-chave")
@@ -53,3 +58,6 @@ for noticia in noticias[:quantidade_noticias]:
         if noticia.get('description'):
             cols[1].write(noticia['description'])
         cols[1].markdown(f"[Leia mais aqui]({noticia['url']})", unsafe_allow_html=True)
+
+# Chama a função de auto-refresh a cada 30 segundos
+auto_refresh(intervalo=30)
