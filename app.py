@@ -48,7 +48,7 @@ for noticia in noticias[:quantidade_noticias]:
         st.markdown("---")
         cols = st.columns([1, 3])
         if noticia.get('urlToImage'):
-            cols[0].image(noticia['urlToImage'], use_column_width=True)
+            cols[0].image(noticia['urlToImage'], use_container_width=True)
         cols[1].subheader(noticia['title'])
         if noticia.get('description'):
             cols[1].write(noticia['description'])
