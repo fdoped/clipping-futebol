@@ -26,7 +26,7 @@ def auto_refresh(intervalo=30):
     st.experimental_rerun()  # Força o Streamlit a recarregar a página
 
 # FILTROS
-clubes = ['Botafogo', 'Flamengo', 'Palmeiras', 'São Paulo', 'Corinthians', 'Grêmio', 'Fluminense', 'Athletico-PR']
+clubes = ['Botafogo', 'Flamengo', 'Palmeiras', 'São Paulo', 'Corinthians', 'Grêmio', 'Fluminense', 'Athletico-PR', 'Vasco', 'Cruzeiro', 'Santos', 'Atlético Mineiro']
 st.sidebar.title("Filtros")
 clube_selecionado = st.sidebar.selectbox("Selecione o Clube", ["Todos"] + clubes)
 termo_busca = st.sidebar.text_input("Busca por palavra-chave")
